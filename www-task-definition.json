@@ -1,0 +1,26 @@
+[
+  {
+    "name": "${service_name}",
+    "image": "${docker_image}:${docker_tag}",
+    "cpu": ${container_cpu},
+    "memory": ${container_memory},
+    "essential": true,
+    "portMappings": [{
+        "containerPort": ${container_port}
+    }],
+    "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-group": "${log_group_name}",
+            "awslogs-region": "${log_group_region}",
+            "awslogs-stream-prefix": "${service_name}"
+        }
+    },
+    "environment": [
+      { "name": "SERVICE_NAME", "value": "${service_name}"},
+      { "name": "HOST", "value": "${service_host}"},
+      { "name": "PORT", "value": "${container_port}"},
+      { "name": "API_URL", "value": "https://api.touist.eu"}
+    ]
+  }
+]

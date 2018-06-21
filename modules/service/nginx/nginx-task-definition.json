@@ -1,0 +1,10 @@
+{
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "containerDefinitions": [],
+    "volumes": [],
+    "networkMode": "bridge",
+    "placementConstraints": [],
+    "family": "nginx"
+}
