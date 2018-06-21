@@ -23,10 +23,10 @@ and learned a lot from it.
 
 Containers:
 
-- API: <https://hub.docker.com/r/touist/editor-server/>
-- www: <https://hub.docker.com/r/touist/editor-ide/>
+- API: <https://hub.docker.com/r/touist/editor-server>
+- www: <https://hub.docker.com/r/touist/editor-ide>
 
-[![infra-png]][infra-original]
+[![AWS infrastructure with ALB/ELB][infra-png]][infra-original]
 
 Schema made using Lucidchart.
 
@@ -47,5 +47,5 @@ repo as it contains sensitive stuff.
 Deployment to AWS is automated via GitLab CI plugged to Github.
 
 [jch254/terraform-ecs-autoscale-alb]:https://github.com/jch254/terraform-ecs-autoscale-alb
-[infra-png]:https://www.lucidchartcom/publicSegments/view/1c8a62fe-a315-4c32-9079-fd7624ac1eb1/image.png
+[infra-png]: https://www.lucidchart.com/publicSegments/view/1c8a62fe-a315-4c32-9079-fd7624ac1eb1/image.png
 [infra-original]: https://www.lucidchart.com/documents/view/567962c6-3cd2-450d-afcf-a68f9561a729
