@@ -1,3 +1,5 @@
+**NOTICE:** I had to shut down `touist.eu` on July 2018 as it was only supposed to be a prototype project lasting 3 months (also it cost me $35 per month). Fortunately, putting it back online would only take a few seconds thanks to Terraform!
+
 # Infrastructure-as-code for the TouIST web IDE
 
 I used the [jch254/terraform-ecs-autoscale-alb] as source of inspiration
