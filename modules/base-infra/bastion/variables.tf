@@ -21,3 +21,7 @@ variable "security_group_ssh_id" {
 variable "bastion_subnet_ids" {
   description = "Comma-separated list of subnets where bastion instance should be deployed"
 }
+
+variable "enable" {
+  default = true
+}

@@ -45,9 +45,13 @@ module "alb" {
 }
 
 module "ecs_cluster" {
-  source = "./ecs-cluster"
+  source       = "./ecs-cluster"
+  cluster_name = "${var.cluster_name}"
+}
 
-  cluster_name    = "${var.cluster_name}"
+module "datadog" {
+  source          = "./datadog"
+  enable          = false
   datadog_api_key = "${var.datadog_api_key}"
 }
 
@@ -55,7 +59,7 @@ module "ecs_instances" {
   source = "./ecs-instances"
 
   cluster_name          = "${module.ecs_cluster.cluster_name}"
-  dd_agent_task_name    = "${module.ecs_cluster.dd_agent_task_name}"
+  dd_agent_task_name    = "${module.datadog.dd_agent_task_name}"
   instance_type         = "${var.instance_type}"
   instance_profile_name = "${module.security.ecs_instance_profile_name}"
   ami                   = "${lookup(var.ami, var.region)}"

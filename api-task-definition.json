@@ -18,7 +18,9 @@
     "environment": [
       { "name": "SERVICE_NAME", "value": "${service_name}"},
       { "name": "PORT", "value": "${container_port}"},
-      { "name": "BASE", "value": "/"}
+      { "name": "BASE", "value": "/"},
+      { "name": "LOG", "value": "normal"},
+      { "name": "ENV", "value": "prod"}
     ]
   }
 ]

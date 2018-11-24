@@ -1,0 +1,7 @@
+region = "eu-west-3"
+route53_zone_id = "N4OAVFB1OVFBM"
+acm_arn = "arn:aws:acm:eu-west-3:057192991131:certificate/bdc3de5c-23bd-52bc-a4a6-5f1ade9516cc"
+datadog_api_key = "0631d1fbcb407e4773474e4c4b8f516c"
+s3-bucket-name = "610-terraform-remote-state"
+ssh_allowed_ip = "138.12.46.123"
+ssh_key_pair_name = "dr_eu_west_3"

@@ -6,5 +6,5 @@ node_modules/
 .terraform/
 *.tfstate
 *.tfstate.backup
-/modules.tf
 .vscode/
+/variables.tf

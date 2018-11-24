@@ -1,3 +1,7 @@
+locals {
+  cooldown = "120"
+}
+
 # A CloudWatch alarm that moniors CPU utilization of containers for scaling up
 resource "aws_cloudwatch_metric_alarm" "service_cpu_high" {
   alarm_name          = "${var.service_name}-cpu-utilization-above-80"
@@ -6,7 +10,7 @@ resource "aws_cloudwatch_metric_alarm" "service_cpu_high" {
   evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
-  period              = "120"
+  period              = "${local.cooldown}"
   statistic           = "Average"
   threshold           = "80"
   alarm_actions       = ["${aws_appautoscaling_policy.scale_up.arn}"]
@@ -25,7 +29,7 @@ resource "aws_cloudwatch_metric_alarm" "service_cpu_low" {
   evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/ECS"
-  period              = "120"
+  period              = "${local.cooldown}"
   statistic           = "Average"
   threshold           = "5"
   alarm_actions       = ["${aws_appautoscaling_policy.scale_down.arn}"]
@@ -44,7 +48,7 @@ resource "aws_cloudwatch_metric_alarm" "service_memory_high" {
   evaluation_periods  = "1"
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
-  period              = "120"
+  period              = "${local.cooldown}"
   statistic           = "Average"
   threshold           = "80"
   alarm_actions       = ["${aws_appautoscaling_policy.scale_up.arn}"]
@@ -63,7 +67,7 @@ resource "aws_cloudwatch_metric_alarm" "service_memory_low" {
   evaluation_periods  = "1"
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
-  period              = "120"
+  period              = "${local.cooldown}"
   statistic           = "Average"
   threshold           = "5"
   alarm_actions       = ["${aws_appautoscaling_policy.scale_down.arn}"]
@@ -90,9 +94,9 @@ resource "aws_appautoscaling_policy" "scale_up" {
   service_namespace  = "ecs"
 
   step_scaling_policy_configuration {
-    cooldown                = 120
+    cooldown                = "${local.cooldown}"
     adjustment_type         = "ChangeInCapacity"
-    metric_aggregation_type = "Average"
+    metric_aggregation_type = "Maximum"
 
     step_adjustment {
       metric_interval_lower_bound = 0
@@ -110,9 +114,9 @@ resource "aws_appautoscaling_policy" "scale_down" {
   service_namespace  = "ecs"
 
   step_scaling_policy_configuration {
-    cooldown                = 120
+    cooldown                = "${local.cooldown}"
     adjustment_type         = "ChangeInCapacity"
-    metric_aggregation_type = "Average"
+    metric_aggregation_type = "Maximum"
 
     step_adjustment {
       metric_interval_upper_bound = 0

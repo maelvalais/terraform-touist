@@ -1,3 +1,7 @@
+locals {
+  cooldown = 60
+}
+
 # User data template that specifies how to bootstrap each instance
 data "template_file" "user_data" {
   template = "${file("${path.module}/user-data.tpl")}"
@@ -68,7 +72,7 @@ resource "aws_autoscaling_policy" "scale_up" {
   name                   = "${var.cluster_name}-instances-scale-up"
   scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
-  cooldown               = 300
+  cooldown               = "${local.cooldown}"
   autoscaling_group_name = "${aws_autoscaling_group.ecs_cluster.name}"
 }
 
@@ -76,7 +80,7 @@ resource "aws_autoscaling_policy" "scale_down" {
   name                   = "${var.cluster_name}-instances-scale-down"
   scaling_adjustment     = -1
   adjustment_type        = "ChangeInCapacity"
-  cooldown               = 300
+  cooldown               = "${local.cooldown}"
   autoscaling_group_name = "${aws_autoscaling_group.ecs_cluster.name}"
 }
 
@@ -88,8 +92,8 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cluster_instances_cpu_high" {
   evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "300"
-  statistic           = "Average"
+  period              = "${local.cooldown}"
+  statistic           = "Maximum"
   threshold           = "80"
   alarm_actions       = ["${aws_autoscaling_policy.scale_up.arn}"]
 
@@ -106,8 +110,8 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cluster_instances_cpu_low" {
   evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "300"
-  statistic           = "Average"
+  period              = "${local.cooldown}"
+  statistic           = "Maximum"
   threshold           = "5"
   alarm_actions       = ["${aws_autoscaling_policy.scale_down.arn}"]
 
@@ -124,8 +128,8 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cluster_instances_memory_high" {
   evaluation_periods  = "1"
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/EC2"
-  period              = "300"
-  statistic           = "Average"
+  period              = "${local.cooldown}"
+  statistic           = "Maximum"
   threshold           = "80"
   alarm_actions       = ["${aws_autoscaling_policy.scale_down.arn}"]
 
@@ -142,8 +146,8 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cluster_instances_memory_low" {
   evaluation_periods  = "1"
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/EC2"
-  period              = "300"
-  statistic           = "Average"
+  period              = "${local.cooldown}"
+  statistic           = "Maximum"
   threshold           = "5"
   alarm_actions       = ["${aws_autoscaling_policy.scale_down.arn}"]
 

@@ -33,7 +33,7 @@ echo "
 cluster=$cluster
 az=$az
 region=$region
-###### aws ecs start-task --cluster $cluster --task-definition $dd_task_def --container-instances $instance_arn --region $region
+aws ecs start-task --cluster $cluster --task-definition $dd_task_def --container-instances $instance_arn --region $region
 " >> /etc/rc.local
 echo End: set up datadog ECS task
 
