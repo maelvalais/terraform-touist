@@ -1,3 +1,8 @@
+# Infrastructure-as-code for the TouIST web IDE
+
+I used the [jch254/terraform-ecs-autoscale-alb] as source of inspiration
+and learned a lot from it.
+
 **NOTICE:** I had to shut down `touist.eu` on July 2018 as it was only supposed to be a prototype project lasting 3 months (also it cost me $35 per month). Fortunately, putting it back online would only take a few seconds thanks to Terraform! I guess I should study a bit more how to minimize the costs (using spot EC2 instances?) Here is the overall costs of this infrastructure:
 
 |       Service       | July 2018 (total) |
@@ -14,12 +19,6 @@
 | DynamoDB (*$*)      | 0.00              |
 
 <img width="677" alt="Capture d’écran 2019-03-24 à 14 40 58" src="https://user-images.githubusercontent.com/2195781/54880365-42626c80-4e44-11e9-9e02-4bf6311857f4.png">
-
-
-# Infrastructure-as-code for the TouIST web IDE
-
-I used the [jch254/terraform-ecs-autoscale-alb] as source of inspiration
-and learned a lot from it.
 
 ## Infrastructure description
 
