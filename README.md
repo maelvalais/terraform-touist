@@ -1,4 +1,4 @@
-**NOTICE:** I had to shut down `touist.eu` on July 2018 as it was only supposed to be a prototype project lasting 3 months (also it cost me $35 per month). Fortunately, putting it back online would only take a few seconds thanks to Terraform!
+**NOTICE:** I had to shut down `touist.eu` on July 2018 as it was only supposed to be a prototype project lasting 3 months (also it cost me $35 per month). Fortunately, putting it back online would only take a few seconds thanks to Terraform! I guess I should study a bit more how to minimize the costs (using spot EC2 instances? 
 
 # Infrastructure-as-code for the TouIST web IDE
 
@@ -47,6 +47,25 @@ repo as it contains sensitive stuff.
 ## Deployment via GitLab CI
 
 Deployment to AWS is automated via GitLab CI plugged to Github.
+
+## Costs for one month (July 2018)
+
+The overall cost of this infrastructure is around $40 per month.
+
+|       Service       | July 2018 (total) |
+|---------------------|-------------------|
+| Total cost (*$*)    | 40.47             |
+| EC2-ELB (*$*)       | 19.69             |
+| EC2-Instances (*$*) | 9.81              |
+| Tax (*$*)           | 6.75              |
+| EC2-Other (*$*)     | 3.48              |
+| Route 53 (*$*)      | 0.50              |
+| CloudWatch (*$*)    | 0.20              |
+| S3 (*$*)            | 0.04              |
+| Budgets (*$*)       | 0.00              |
+| DynamoDB (*$*)      | 0.00              |
+
+<img width="677" alt="Capture d’écran 2019-03-24 à 14 40 58" src="https://user-images.githubusercontent.com/2195781/54880365-42626c80-4e44-11e9-9e02-4bf6311857f4.png">
 
 [jch254/terraform-ecs-autoscale-alb]:https://github.com/jch254/terraform-ecs-autoscale-alb
 [infra-png]: https://www.lucidchart.com/publicSegments/view/1c8a62fe-a315-4c32-9079-fd7624ac1eb1/image.png
